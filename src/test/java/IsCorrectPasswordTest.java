@@ -35,6 +35,32 @@ public class IsCorrectPasswordTest {
                 };
     }
 
+    @DataProvider(name = "noDigit")
+    public Object[][] noDigit(){
+        return new Object[] []
+                {
+                        {"abcdefghijA!l"},
+                        {"asBERGAdaeB!l"},
+                        {"abcd#A@^ij!!l"},
+                        {"%bcFefghijA!l"},
+                        {"*&^^ABs^%j&!l"},
+
+                };
+    }
+
+    @DataProvider(name = "noSign")
+    public Object[][] noSign(){
+        return new Object[] []
+                {
+                        {"abcdefghijA2l"},
+                        {"aFDAeraFA342l"},
+                        {"abcd6AF344Afl"},
+                        {"3bcdefghijFDl"},
+                        {"324242AGddddda"},
+
+                };
+    }
+
     @Test (dataProvider = "tooShort")
     public void shouldNotAcceptLessThan12Chars(String password){
         SubstringAnalyser sa = new SubstringAnalyser(5);
@@ -44,6 +70,12 @@ public class IsCorrectPasswordTest {
 
     @Test (dataProvider = "noCapital")
     public void shouldNotAcceptPassWithoutCapitalLetter  (String password){
+        SubstringAnalyser sa = new SubstringAnalyser(10);
+        Assert.assertFalse(sa.isCorrectPassword(password));
+    }
+
+    @Test (dataProvider = "noDigit")
+    public void shouldNotAcceptPassWithoutDigit  (String password){
         SubstringAnalyser sa = new SubstringAnalyser(10);
         Assert.assertFalse(sa.isCorrectPassword(password));
     }
