@@ -57,7 +57,7 @@ public class IsCorrectPasswordTest {
                         {"abcd6AF344Afl"},
                         {"3bcdefghijFDl"},
                         {"324242AGddddda"},
-
+                        {"324242AGddddda#@"}, //test should fail
                 };
     }
 
@@ -76,6 +76,12 @@ public class IsCorrectPasswordTest {
 
     @Test (dataProvider = "noDigit")
     public void shouldNotAcceptPassWithoutDigit  (String password){
+        SubstringAnalyser sa = new SubstringAnalyser(10);
+        Assert.assertFalse(sa.isCorrectPassword(password));
+    }
+
+    @Test (dataProvider = "noSign")
+    public void shouldNotAcceptPassWithoutSign  (String password){
         SubstringAnalyser sa = new SubstringAnalyser(10);
         Assert.assertFalse(sa.isCorrectPassword(password));
     }
