@@ -57,7 +57,7 @@ public class IsCorrectPasswordTest {
                         {"abcd6AF344Afl"},
                         {"3bcdefghijFDl"},
                         {"324242AGddddda"},
-                        {"324242AGddddda#@"}, //test should fail
+                        {"324242AGdddd%^aGFD"}, //test should fail
                 };
     }
 
